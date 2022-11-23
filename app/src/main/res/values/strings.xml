@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">HRM</string>
+    <string name="login_page">Login</string>
+    <string name="login_page_message">Please login to continue</string>
+    <string name="login_page_ID">ID</string>
+    <string name="login_page_pass">Password</string>
+
+    <string-array name="all_types">
+        <item>Full-Day</item>
+        <item>Half-Day</item>
+    </string-array>
+</resources>
