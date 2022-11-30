@@ -1,5 +1,6 @@
 package com.foysal.practice.hrm.Adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.foysal.practice.hrm.Model.Exceptions
 import com.foysal.practice.hrm.Model.UserWithExceptions
 import com.foysal.practice.hrm.R
+import com.foysal.practice.hrm.View.ApproveException
+import com.foysal.practice.hrm.View.ExceptionAuthorizeActivity
 
-class ExceptionAdapter : RecyclerView.Adapter<ExceptionAdapter.ExceptionViewHolder>(){
+class ExceptionAdapter(private val activity : ExceptionAuthorizeActivity) :
+    RecyclerView.Adapter<ExceptionAdapter.ExceptionViewHolder>(){
 
     var exceptions : List<Exceptions> = ArrayList()
 
@@ -30,7 +34,8 @@ class ExceptionAdapter : RecyclerView.Adapter<ExceptionAdapter.ExceptionViewHold
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExceptionViewHolder {
 
-        val view : View = LayoutInflater.from(parent.context).inflate(R.layout.card_design,parent,false)
+        val view : View = LayoutInflater.from(parent.context).
+        inflate(R.layout.card_design,parent,false)
 
         return ExceptionViewHolder(view)
 
@@ -42,14 +47,23 @@ class ExceptionAdapter : RecyclerView.Adapter<ExceptionAdapter.ExceptionViewHold
 
         holder.textViewName.text = currentException.name
         holder.textViewId.text = currentException.id.toString()
+        holder.authReason.text = currentException.reason
         holder.textViewStatus.text = currentException.status
 
         holder.cardView.setOnClickListener{
 
-            holder.authName.text = currentException.name
-            holder.authReason.text = currentException.reason
-            holder.authType.text = currentException.dateType
-            holder.authStatus.text = currentException.status
+            val intent = Intent(activity, ApproveException::
+            class.java)
+
+            intent.putExtra("textViewName", currentException.name)
+            intent.putExtra("textViewId", currentException.id)
+            intent.putExtra("textViewStatus", currentException.status)
+            intent.putExtra("authReason", currentException.reason)
+            intent.putExtra("date", currentException.date)
+            intent.putExtra("dateType", currentException.dateType)
+            intent.putExtra("userId", currentException.userId)
+
+            activity.editActivityResultLauncher.launch(intent)
 
         }
 
@@ -57,6 +71,18 @@ class ExceptionAdapter : RecyclerView.Adapter<ExceptionAdapter.ExceptionViewHold
 
     override fun getItemCount(): Int {
         return exceptions.size
+    }
+    fun setException(exceptions : List<Exceptions>){
+
+        this.exceptions = exceptions
+        notifyDataSetChanged()
+
+    }
+
+    fun getException(position : Int) : Exceptions{
+
+        return exceptions[position]
+
     }
 
 }

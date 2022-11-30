@@ -30,7 +30,7 @@ abstract class UserDatabase : RoomDatabase() {
                     context.applicationContext,
                     UserDatabase::class.java , "user_database"
                 )
-                    .addCallback(UserDatabaseCallback(scope))
+                    .addCallback(UserDatabaseCallback(scope)).allowMainThreadQueries()
                     .build()
 
                 INSTANCE = instance
@@ -39,6 +39,7 @@ abstract class UserDatabase : RoomDatabase() {
             }
 
         }
+
     }
     class UserDatabaseCallback(private val scope: CoroutineScope) : RoomDatabase.Callback() {
 

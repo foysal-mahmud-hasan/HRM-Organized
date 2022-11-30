@@ -9,7 +9,8 @@ import kotlinx.coroutines.flow.Flow
 
 class UserRepository( private val usersDAO: UsersDAO) {
 
-    val allUsers : Flow<List<Users>> = usersDAO.getAllEUsers()
+    val allUsers : Flow<List<Users>> = usersDAO.getAllUsers()
+    val allUser : List<Users> = usersDAO.getAllUser()
     val userExceptionList : Flow<List<UserWithExceptions>> = usersDAO.getUserExceptions()
 
     @WorkerThread

@@ -1,7 +1,6 @@
 package com.foysal.practice.hrm.Room
 
 import androidx.room.*
-import com.foysal.practice.hrm.Model.Exceptions
 import com.foysal.practice.hrm.Model.UserWithExceptions
 import com.foysal.practice.hrm.Model.Users
 import kotlinx.coroutines.flow.Flow
@@ -25,7 +24,11 @@ interface UsersDAO {
 
     @Query
         ("SELECT * FROM users ORDER BY id ASC")
-    fun getAllEUsers() : Flow<List<Users>>
+    fun getAllUsers() : Flow<List<Users>>
+
+    @Query
+        ("SELECT * FROM users")
+    fun getAllUser() : List<Users>
 
 
 }

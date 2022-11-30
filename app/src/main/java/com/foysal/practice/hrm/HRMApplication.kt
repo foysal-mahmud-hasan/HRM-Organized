@@ -1,6 +1,7 @@
 package com.foysal.practice.hrm
 
 import android.app.Application
+import com.foysal.practice.hrm.Repository.ExceptionRepository
 import com.foysal.practice.hrm.Repository.UserRepository
 import com.foysal.practice.hrm.Room.UserDatabase
 import kotlinx.coroutines.CoroutineScope
@@ -12,6 +13,7 @@ class HRMApplication : Application() {
 
     val database by lazy {UserDatabase.getDatabase(this, applicationScope)}
     val repository by lazy { UserRepository(database.getUserDao()) }
+    val repository1 by lazy { ExceptionRepository(database.getExceptionDao()) }
 
 
 }

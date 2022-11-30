@@ -13,21 +13,28 @@
         android:theme="@style/Theme.HRM"
         tools:targetApi="31">
         <activity
-            android:name=".HomeActivity"
+            android:name=".View.ApproveException"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ExceptionEntryActivity"
+            android:name=".View.HomeActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ExceptionAuthorizeActivity"
+            android:name=".View.ExceptionEntryActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".View.ExceptionAuthorizeActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
